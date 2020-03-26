@@ -1,0 +1,58 @@
+<h1 mat-dialog-title>{{ this.ChangeTitle }} {{ this.structure.Title }}</h1>
+<form [formGroup]="form" (ngSubmit)="submit(form)">
+    <mat-dialog-content>
+        <p [innerHTML]="this.LiveData"></p>
+        <input type="hidden" formControlName="action" value="save" />
+
+        <div *ngFor="let flexibleDialogElement of this.elements">
+
+            <mat-form-field *ngIf="isTextbox(flexibleDialogElement.Type) && flexibleDialogElement.Display">
+                <input matInput formControlName="{{flexibleDialogElement.FormName}}"
+                    placeholder="{{ flexibleDialogElement.Placeholder }}" />
+            </mat-form-field>
+
+            <mat-form-field *ngIf="isDropdown(flexibleDialogElement.Type) && flexibleDialogElement.Display">
+                <mat-select formControlName="{{flexibleDialogElement.FormName}}"
+                    placeholder="{{ flexibleDialogElement.Placeholder }}">
+                    <mat-option [value]="option.Value" *ngFor="let option of flexibleDialogElement.Options">
+                        {{ option.Name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-checkbox *ngIf="isCheckbox(flexibleDialogElement.Type) && flexibleDialogElement.Display"
+                formControlName="{{flexibleDialogElement.FormName}}">{{flexibleDialogElement.DisplayName}}
+            </mat-checkbox>
+
+            <div *ngIf="isIPAddress(flexibleDialogElement.Type) && flexibleDialogElement.Display">
+                {{ flexibleDialogElement.DisplayName }}:<br />
+                <mat-form-field appearance="outline" class="IPAddress">
+                    <input size="3" matInput formControlName="{{flexibleDialogElement.FormName}}_0" />
+                </mat-form-field>
+                .
+                <mat-form-field appearance="outline" class="IPAddress">
+                    <input size="3" matInput formControlName="{{flexibleDialogElement.FormName}}_1" />
+                </mat-form-field>
+                .
+                <mat-form-field appearance="outline" class="IPAddress">
+                    <input size="3" matInput formControlName="{{flexibleDialogElement.FormName}}_2" />
+                </mat-form-field>
+                .
+                <mat-form-field appearance="outline" class="IPAddress">
+                    <input size="3" matInput formControlName="{{flexibleDialogElement.FormName}}_3" />
+                </mat-form-field>
+            </div>
+
+        </div>
+
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+        <button mat-button type="button" color="{{this.structure.CancelTitleColor}}"
+            (click)="close()">{{this.structure.CancelTitle}}</button>
+        <button mat-button type="submit"
+            color="{{this.structure.SubmitTitleColor}}">{{this.structure.SubmitTitle}}</button>
+        <button mat-button *ngIf="this.structure.ShowRemove" (click)="remove(form)"
+            color="{{this.structure.RemoveTitleColor}}">{{this.structure.RemoveTitle}}</button>
+    </mat-dialog-actions>
+</form>

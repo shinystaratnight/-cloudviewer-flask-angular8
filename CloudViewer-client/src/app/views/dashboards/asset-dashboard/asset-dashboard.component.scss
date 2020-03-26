@@ -1,0 +1,100 @@
+.NotAlarming {
+    background-color: #fff;
+}
+
+.alarming_1 {
+    animation-name: alarming_1;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes alarming_1 {
+    0% {
+        background-color: #e8e1e1;
+    }
+
+    50% {
+        background-color: #ff9c9c;
+    }
+
+    100% {
+        background-color: #e8e1e1;
+    }
+}
+
+.alarming_2 {
+    animation-name: alarming_2;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes alarming_2 {
+    0% {
+        background-color: #e8e1e1;
+    }
+
+    50% {
+        background-color: #ffa200;
+    }
+
+    100% {
+        background-color: #e8e1e1;
+    }
+}
+
+.alarming_3 {
+    animation-name: alarming_3;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes alarming_3 {
+    0% {
+        background-color: #e8e1e1;
+    }
+
+    50% {
+        background-color: #ffdd00;
+    }
+
+    100% {
+        background-color: #e8e1e1;
+    }
+}
+
+div.scroller {
+    overflow: scroll;
+}
+
+// div.outerBox {
+//     height: 200px;
+//     width: 200px;
+//     background-color: black;
+//     overflow: scroll;
+// }
+
+// div.innerBox {
+//     height: 400px;
+//     width: 400px;
+//     background-color: teal;
+// }
+
+
+// .mobileScroll {
+//     width: 365px;
+//     overflow: scroll;
+// }
+
+// @media only screen and (max-width: 376px) {
+//     .mobileScroll {
+//         width: 375px;
+//         overflow: scroll;
+//     }
+// }
+
+// @media only screen and (max-width: 668px) {
+//     .mobileScroll {
+//         width: 667px;
+//         overflow: scroll;
+//     }
+// }

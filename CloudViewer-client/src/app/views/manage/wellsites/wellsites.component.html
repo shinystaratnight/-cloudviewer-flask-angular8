@@ -1,0 +1,80 @@
+<div class="m-333">
+  <button mat-raised-button class="mb-05" color="primary" routerLink="/manage/wellsiteModify/new">Add Well Site</button>
+</div>
+<mat-card class="p-0" [@animate]="{value:'*',params:{y:'50px',delay:'300ms'}}">
+  <mat-progress-bar mode="indeterminate" class="session-progress"></mat-progress-bar>
+  <form [formGroup]="myForm">
+    <mat-form-field class="margin-333" style="width: 99%">
+      <input matInput placeholder="Type to filter" value="" (keyup)='updateFilter($event)' name="filterText"
+        [formControl]="myForm.controls['filterText']">
+    </mat-form-field>
+  </form>
+
+  <mat-card-content class="p-0">
+    <ngx-datatable class="material ml-0 mr-0" [rows]="items_filtered" [columnMode]="'force'" [headerHeight]="50"
+      [footerHeight]="50" [scrollbarH]="true" [limit]="10" [rowHeight]="50">
+      <ngx-datatable-column name="ID" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.id }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Name" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.name }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Location" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.location }}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <!-- <ngx-datatable-column name="District" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.district }}
+        </ng-template>
+      </ngx-datatable-column> -->
+
+      <ngx-datatable-column name="Order Number" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.orderNumber}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Status" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.state}}
+        </ng-template>
+      </ngx-datatable-column>
+      <!--      <ngx-datatable-column name="State" [flexGrow]="1">-->
+      <!--        <ng-template let-row="row" ngx-datatable-cell-template>-->
+      <!--          {{ row?.scheduledStartDate }}-->
+      <!--        </ng-template>-->
+      <!--      </ngx-datatable-column>-->
+      <!--      <ngx-datatable-column name="State" [flexGrow]="1">-->
+      <!--        <ng-template let-row="row" ngx-datatable-cell-template>-->
+      <!--          {{ row?.scheduledEndDate }}-->
+      <!--        </ng-template>-->
+      <!--      </ngx-datatable-column>-->
+
+      <ngx-datatable-column name="Edit" [flexGrow]=".25">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <button mat-icon-button mat-sm-button color="primary" class="mr-1"
+            [routerLink]="['/manage', 'wellsiteModify', row?.id]">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <!-- <button mat-icon-button mat-sm-button color="primary" (click)="deleteItem(row)"><mat-icon>assignment</mat-icon></button> -->
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Files" [flexGrow]=".25">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <button mat-icon-button mat-sm-button color="primary" class="mr-1"
+            [routerLink]="['/manage', 'wellsiteFiles', row?.id]">
+            <mat-icon>assignment</mat-icon>
+          </button>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </mat-card-content>
+</mat-card>

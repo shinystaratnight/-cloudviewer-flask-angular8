@@ -1,0 +1,10 @@
+{
+    "production": {
+        "app_function": "app.app",
+        "aws_region": "us-east-2",
+        "profile_name": "default",
+        "project_name": "otr-cloud-api",
+        "runtime": "python3.7",
+        "s3_bucket": "otr.api.production.zappa"
+    }
+}

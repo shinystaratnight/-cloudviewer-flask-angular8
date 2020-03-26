@@ -1,0 +1,5 @@
+docker build -t kanan-cv-api -f Dockerfile .
+ 
+docker tag kanan-cv-api:latest 672351817396.dkr.ecr.us-east-2.amazonaws.com/kanan-cv-api:latest
+
+docker push 672351817396.dkr.ecr.us-east-2.amazonaws.com/kanan-cv-api:latest

@@ -1,0 +1,58 @@
+<div fxLayout="row wrap">
+	<div fxFlex="100" fxFlex.gt-sm="100" fxFlex.sm="50">
+		<mat-card class="" [@animate]="{ value: '*', params: { y: '50px', delay: '300ms' } }">
+			<h3>User Requests</h3>
+			<ngx-datatable class="material ml-0 mr-0 striped" [rows]="Users_Requested" [columnMode]="'flex'"
+				[headerHeight]="50" [footerHeight]="0" [rowHeight]="'auto'">
+				<ngx-datatable-column name="User" [flexGrow]="1">
+					<ng-template let-row="row" ngx-datatable-cell-template>
+						{{ row?.username }} <br />
+						{{row?.email}}
+					</ng-template>
+				</ngx-datatable-column>
+				<ngx-datatable-column name="Company" [flexGrow]="1">
+					<ng-template let-row="row" ngx-datatable-cell-template>
+						{{row?.companyName}} <br />
+						<mat-form-field class="full-width">
+							<mat-select (selectionChange)="onChange_company($event)" id="SeletedCompanyName_{{row.id}}"
+								placeholder="Select Company">
+								<mat-option *ngFor="let obj of Company_dropdown" [value]="obj.id">
+									{{ obj.name }}
+								</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</ng-template>
+				</ngx-datatable-column>
+
+				<ngx-datatable-column name="District And Access" [flexGrow]="1">
+					<ng-template let-row="row" ngx-datatable-cell-template>
+						<mat-form-field class="full-width">
+							<mat-select (selectionChange)="onChange_district($event)" id="SeletedDistrict_{{row.id}}"
+								placeholder="Select District" [disabled]="District_dropdown[row.id] == undefined">
+								<mat-option *ngFor="let obj of District_dropdown[row.id]" [value]="obj.districtId">
+									{{ obj.districtName }}
+								</mat-option>
+							</mat-select>
+						</mat-form-field>
+						<mat-form-field class="full-width">
+							<mat-select (selectionChange)="onChange_access($event)" id="SeletedAccess_{{row.id}}"
+								placeholder="Select Access" [disabled]="Access_dropdown[row.id] == undefined">
+								<mat-option *ngFor="let obj of Access_dropdown[row.id]" [value]="obj.value">
+									{{ obj.name }}
+								</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</ng-template>
+				</ngx-datatable-column>
+
+				<ngx-datatable-column name="Approve" [flexGrow]=".5">
+					<ng-template let-row="row" ngx-datatable-cell-template>
+						<button mat-raised-button id="ApproveCompanyName_{{row.id}}" [disabled]="buttonDisabled(row)"
+							color="primary" (click)="ApproveUser(row)">Approve</button>
+					</ng-template>
+				</ngx-datatable-column>
+			</ngx-datatable>
+		</mat-card>
+	</div>
+
+</div>

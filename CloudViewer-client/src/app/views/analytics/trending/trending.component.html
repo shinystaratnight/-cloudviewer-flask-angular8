@@ -1,0 +1,68 @@
+<div fxLayout="row wrap">
+    <div fxFlex="100" fxFlex.gt-sm="100" fxFlex.sm="50">
+        <mat-progress-bar mode="indeterminate" class="session-progress"></mat-progress-bar>
+    </div>
+</div>
+<div fxLayout="row wrap">
+    <div fxFlex="33" fxFlex.gt-sm="33" fxFlex.sm="33">
+        <mat-card class="" [@animate]="{ value: '*', params: { y: '50px', delay: '300ms' } }">
+            <h3>Available Information Points</h3>
+            <form [formGroup]="FilterForm">
+                <mat-form-field class="margin-333" style="width: 99%">
+                    <input matInput placeholder="Type to filter" value="" (keyup)="TextFilter()"
+                        name="filterText" [formControl]="FilterForm.controls['filterText']">
+                </mat-form-field>
+            </form>
+            <ngx-datatable class="material ml-0 mr-0" [rows]="PointsList_Filtered" [columnMode]="'flex'"
+                [headerHeight]="50" [footerHeight]="0" [rowHeight]="'auto'" [rowClass]="isCheckedCSS">
+                <ngx-datatable-column name="Name" [flexGrow]="3">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{ row.DisplayName }}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Graph?" [flexGrow]="1" >
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        <input type="checkbox" id="{{row.ids}}" (change)="onFilterChange($event)" [checked]="row.Checked">
+                    </ng-template>
+                </ngx-datatable-column>
+            </ngx-datatable>
+        </mat-card>
+    </div>
+
+    <div fxFlex="67" fxFlex.gt-sm="67" fxFlex.sm="67" [formGroup]="dateForm">
+        <div id="Chart" class="pb-1 border-right-light">
+            <mat-card class="" [@animate]="{ value: '*', params: { y: '50px', delay: '300ms' } }">
+                <div fxFlex="50" class="pr-1">
+                    <mat-form-field class="full-width">
+                        <input matInput name="StartDate" placeholder="Start Date" [matDatepicker]="startDate"
+                            formControlName="startDate" (ngModelChange)="GraphDateChanged()">
+                        <mat-datepicker-toggle matSuffix [for]="startDate">
+                            <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                        </mat-datepicker-toggle>
+                        <mat-datepicker [startAt]="startDate" #startDate></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="50" class="pr-1">
+                    <mat-form-field class="full-width">
+                        <input matInput name="EndDate" placeholder="End Date" [matDatepicker]="endDate"
+                            formControlName="endDate" (ngModelChange)="GraphDateChanged()">
+                        <mat-datepicker-toggle matSuffix [for]="endDate">
+                            <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                        </mat-datepicker-toggle>
+                        <mat-datepicker [startAt]="endDate" #endDate></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </mat-card>
+
+            <mat-card class="p-0" [@animate]="{ value: '*', params: { y: '50px', delay: '300ms' } }">
+                <highcharts-chart [Highcharts]="Highcharts" [options]="GraphData" [(update)]="updateFromInput"
+                    (chartInstance)="logChartInstance($event)" class="RegularChart" #chart>
+                </highcharts-chart>
+                <button mat-raised-button color="primary" class="ShowFullScreenGraph" #ShowFullScreenGraph_el
+                    (click)="ShowFullScreenGraph()">Full Screen</button>
+            </mat-card>
+        </div>
+    </div>
+    <button mat-raised-button color="primary" class="HideFullScreenGraph hidden" #HideFullScreenGraph_el
+        (click)="HideFullScreenGraph()">Exit Full Screen</button>
+</div>

@@ -1,0 +1,53 @@
+<mat-card class="p-0">
+  <mat-progress-bar mode="determinate" class="session-progress"></mat-progress-bar>
+  <mat-card-title class="">
+    <div class="card-title-text">
+      <span>Your Profile</span>
+    </div>
+    <mat-divider></mat-divider>
+  </mat-card-title>
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+
+    <div class="pb-1">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="User ID" [formControl]="id">
+      </mat-form-field>
+    </div>
+    <div class="pb-1">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="User Name" [formControl]="name">
+      </mat-form-field>
+    </div>
+    <div class="pb-1">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="User Email" [formControl]="email">
+      </mat-form-field>
+    </div>
+    <div class="pb-1">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Access Level" [formControl]="accessLevel">
+      </mat-form-field>
+    </div>
+    <!-- <div class="pb-1">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Company ID" [formControl]="CompanyID">
+      </mat-form-field>
+    </div> -->
+    <div class="pb-1">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Company Name" [formControl]="companyName">
+      </mat-form-field>
+    </div>
+    <div class="pb-1">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="District ID" [formControl]="districtID">
+      </mat-form-field>
+    </div>
+    <div class="pb-1">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Phone Number" [formControl]="phone">
+      </mat-form-field>
+    </div>
+    <!-- <button mat-raised-button color="primary" class="mb-1">Save</button> -->
+  </form>
+</mat-card>

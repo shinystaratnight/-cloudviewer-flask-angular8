@@ -1,0 +1,451 @@
+<!--<p class="m-333">-->
+<!--  main works! Finally!-->
+<!--</p>-->
+<mat-progress-bar mode="indeterminate" class="session-progress"></mat-progress-bar>
+<mat-card class="p-0" [@animate]="{ value: '*', params: { scale: '.9', delay: '200ms' } }">
+  <div fxLayout="row">
+    <!--    <div-->
+    <!--            fxFlex="100"-->
+    <!--            fxFlex.gt-sm="20"-->
+    <!--            fxFlex.sm="50"-->
+    <!--      <div class="text-center pt-1 pb-1 border-right-light">-->
+    <!--        <mat-icon class="text-blue">account_balance_wallet</mat-icon>-->
+    <!--        <h4 class="m-0">5040</h4>-->
+    <!--        <small class="m-0 text-muted">Notifications Sent Today</small>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <div fxFlex="50" fxFlex.gt-sm="20" fxFlex.sm="50">
+      <div class="text-center pt-1 pb-1 border-right-light">
+        <img class='icon header_icon' src="/assets/images/icons/OilDerrick.png" />
+        <h4 class="m-0 ">{{ numWellSites }}</h4>
+        <small class="m-0 text-muted">Well Sites</small>
+      </div>
+    </div>
+    <div fxFlex="50" fxFlex.gt-sm="20" fxFlex.sm="50">
+      <div class="text-center pt-1 pb-1 border-right-light">
+        <img class='icon header_icon' src="/assets/images/icons/facility.png" />
+        <h4 class="m-0 ">{{ numFacilities }}</h4>
+        <small class="m-0 text-muted">Facilities</small>
+      </div>
+    </div>
+    <div fxFlex="50" fxFlex.gt-sm="20" fxFlex.sm="50">
+      <div class="text-center pt-1 pb-1 border-right-light">
+        <img class='icon header_icon' src="/assets/images/icons/facility_alarm.gif" />
+        <h4 class="m-0 ">{{ numFacilitiesInAlarm }}</h4>
+        <small class="m-0 text-muted">Facilities In Alarm</small>
+      </div>
+    </div>
+
+    <!-- <div fxFlex="50" fxFlex.gt-sm="20" fxFlex.sm="50">
+      <div class="text-center pt-1 pb-1 border-right-light">
+        <img class='icon header_icon' src="/assets/images/icons/Truck1_alarm.gif" />
+        <h4 class="m-0 ">{{ numOTRInAlarm }}</h4>
+        <small class="m-0 text-muted">Assets High Alarm</small>
+      </div>
+    </div> -->
+    <div fxFlex="50" fxFlex.gt-sm="20" fxFlex.sm="50">
+      <div class="text-center pt-1 pb-1 border-right-light">
+        <img class='icon header_icon' src="/assets/images/icons/Truck1_Red.png" />
+        <h4 class="m-0 ">{{ numOTRInAlarmHigh }}</h4>
+        <small class="m-0 text-muted">Assets High Alarm</small>
+      </div>
+    </div>
+    <div fxFlex="50" fxFlex.gt-sm="20" fxFlex.sm="50">
+      <div class="text-center pt-1 pb-1 border-right-light">
+        <img class='icon header_icon' src="/assets/images/icons/Truck1_Orange.png" />
+        <h4 class="m-0 ">{{ numOTRInAlarmMid }}</h4>
+        <small class="m-0 text-muted">Assets Mid Alarm</small>
+      </div>
+    </div>
+    <div fxFlex="50" fxFlex.gt-sm="20" fxFlex.sm="50">
+      <div class="text-center pt-1 pb-1 border-right-light">
+        <img class='icon header_icon' src="/assets/images/icons/Truck1_Yellow.png" />
+        <h4 class="m-0 ">{{ numOTRInAlarmLow }}</h4>
+        <small class="m-0 text-muted">Assets Low Alarm</small>
+      </div>
+    </div>
+
+    <div fxFlex="50" fxFlex.gt-sm="20" fxFlex.sm="50">
+      <div class="text-center pt-1 pb-1 border-right-light">
+        <img class='icon header_icon' src="/assets/images/icons/Truck1_Stripes.png" />
+        <h4 class="m-0 ">{{ numInStandBy }}</h4>
+        <small class="m-0 text-muted">Assets In Standby</small>
+      </div>
+    </div>
+    <!-- <div fxFlex="50" fxFlex.gt-sm="20" fxFlex.sm="50">
+      <div class="text-center pt-1 pb-1 border-right-light">
+        <img class='icon header_icon' src="/assets/images/icons/Truck1_Orange.png" />
+        <h4 class="m-0 ">{{ numGettingChemicals }}</h4>
+        <small class="m-0 text-muted">Assets Getting Chemicals</small>
+      </div>
+    </div> -->
+    <div fxFlex="50" fxFlex.gt-sm="20" fxFlex.sm="50">
+      <div class="text-center pt-1 pb-1">
+        <img class='icon header_icon' src="/assets/images/icons/Truck1_Green.png" />
+        <h4 class="m-0 ">{{ numAtWellSite }}</h4>
+        <small class="m-0 text-muted">Assets at wellsite</small>
+      </div>
+    </div>
+
+    <div fxFlex="50" fxFlex.gt-sm="20" fxFlex.sm="50">
+      <div class="text-center pt-1 pb-1">
+        <img class='icon header_icon' src="/assets/images/icons/Truck1_Blue.png" />
+        <h4 class="m-0 ">{{ numGoingToWellSite }}</h4>
+        <small class="m-0 text-muted">Assets In Transit</small>
+      </div>
+    </div>
+
+
+
+  </div>
+
+</mat-card>
+
+
+
+
+<div fxLayout="row wrap">
+
+  <div fxFlex="100">
+    <mat-card class="p-0">
+      <!--      <mat-card-title class=" m-0">-->
+      <!--        <div class="card-title-text">Info Window</div>-->
+      <!--        <mat-divider></mat-divider>-->
+      <!--      </mat-card-title>-->
+      <mat-card-content class="p-0">
+        <agm-map [ngStyle]="{height: '550px'}" [zoom]="zoom" [latitude]="mapCenter.lat" [longitude]="mapCenter.lng"
+          (mapReady)="onMapReady($event)">
+        </agm-map>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!--  <div fxFlex="100" >-->
+  <!--    <mat-card class="p-0">-->
+  <!--      <mat-card-title class=" m-0">-->
+  <!--        <div class="card-title-text">Info Window</div>-->
+  <!--        <mat-divider></mat-divider>-->
+  <!--      </mat-card-title>-->
+  <!--      <mat-card-content class="p-0">-->
+  <!--        <agm-map-->
+  <!--                [ngStyle]="{height: '400px'}"-->
+  <!--                [zoom]="zoom"-->
+  <!--                [latitude]="mapCenter.lat"-->
+  <!--                [longitude]="mapCenter.lng">-->
+  <!--          <agm-marker [latitude]="mapCenter.lat" [longitude]="mapCenter.lng" [label]="'BD'">-->
+  <!--            <agm-info-window [disableAutoPan]="true" [isOpen]="true">-->
+  <!--              <p><strong>Country:</strong> Bangladesh</p>-->
+  <!--              <p><strong>Birth date:</strong> 16 December, 1971</p>-->
+  <!--            </agm-info-window>-->
+  <!--          </agm-marker>-->
+  <!--        </agm-map>-->
+  <!--      </mat-card-content>-->
+  <!--    </mat-card>-->
+  <!--  </div>-->
+
+
+  <!--  <div fxFlex="100" fxFlex.gt-sm="66.67" fxFlex.sm="50"-->
+  <!--       [@animate]="{value:'*',params:{delay:'400ms',scale:'.9'}}">-->
+  <!--    <mat-card>-->
+  <!--      <div fxLayout="row wrap" fxLayoutAlign="start center">-->
+  <!--        <h6 class="m-0">Bitcoin vs Ethereum </h6>-->
+  <!--        <span fxFlex></span>-->
+  <!--        <button mat-icon-button [matMenuTriggerFor]="chartMenu">-->
+  <!--          <mat-icon>more_vert</mat-icon>-->
+  <!--        </button>-->
+  <!--        <mat-menu #chartMenu="matMenu">-->
+  <!--          <button mat-menu-item>-->
+  <!--            <span>Last 7 days</span>-->
+  <!--          </button>-->
+  <!--          <button mat-menu-item>-->
+  <!--            <span>Last 30 days</span>-->
+  <!--          </button>-->
+  <!--        </mat-menu>-->
+  <!--      </div>-->
+
+  <!--      <div echarts [options]="cryptoChart" [autoResize]="true" style="height: 340px;"></div>-->
+  <!--    </mat-card>-->
+  <!--  </div>-->
+
+
+  <!--  VERY NICE CONTROL TO USE SOMEWHERE-->
+  <!--  <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" [@animate]="{value:'*',params:{delay:'400ms',scale:'.9'}}">-->
+  <!--    <div class="m-333">-->
+  <!--      <mat-accordion multi="false">-->
+  <!--        <mat-expansion-panel expanded="true">-->
+  <!--          <mat-expansion-panel-header>-->
+  <!--            <mat-panel-title>-->
+  <!--              Well 1-->
+  <!--            </mat-panel-title>-->
+  <!--          </mat-expansion-panel-header>-->
+  <!--          <div class="border-bottom pb-1 mb-1">-->
+  <!--            <div fxLyout="row wrap" class="text-blue font-weight-bold">-->
+  <!--              <span>Tank 1</span>-->
+  <!--              <span fxFlex></span>-->
+  <!--              <span>8897.45</span>-->
+  <!--            </div>-->
+  <!--            <div fxLyout="row wrap" class="text-muted">-->
+  <!--              <small>Last Update</small>-->
+  <!--              <span fxFlex></span>-->
+  <!--              <small class="text-green">'2019-08012 9:00 PM'</small>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--          <div class="border-bottom pb-1 mb-1">-->
+  <!--            <div fxLyout="row wrap" class="text-blue font-weight-bold">-->
+  <!--              <span>Tank 2</span>-->
+  <!--              <span fxFlex></span>-->
+  <!--              <span>3829.23</span>-->
+  <!--            </div>-->
+  <!--            <div fxLyout="row wrap" class="text-muted">-->
+  <!--              <small>Last Update</small>-->
+  <!--              <span fxFlex></span>-->
+  <!--              <small class="text-red">'2019-08012 9:00 PM'</small>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--          <div class="">-->
+  <!--            <div fxLyout="row wrap" class="text-blue font-weight-bold">-->
+  <!--              <span>BTC vs GBP</span>-->
+  <!--              <span fxFlex></span>-->
+  <!--              <span>5836.79</span>-->
+  <!--            </div>-->
+  <!--            <div fxLyout="row wrap" class="text-muted">-->
+  <!--              <small>24 hour change</small>-->
+  <!--              <span fxFlex></span>-->
+  <!--              <small class="text-green">210(+2.23%)</small>-->
+  <!--            </div>-->
+  <!--          </div>-->
+
+  <!--        </mat-expansion-panel>-->
+  <!--        <mat-expansion-panel>-->
+  <!--          <mat-expansion-panel-header>-->
+  <!--            <mat-panel-title>-->
+  <!--              ETH-->
+  <!--            </mat-panel-title>-->
+  <!--          </mat-expansion-panel-header>-->
+
+  <!--          <div class="border-bottom pb-1 mb-1">-->
+  <!--            <div fxLyout="row wrap" class="text-blue font-weight-bold">-->
+  <!--              <span>ETH vs USD</span>-->
+  <!--              <span fxFlex></span>-->
+  <!--              <span>8897.45</span>-->
+  <!--            </div>-->
+  <!--            <div fxLyout="row wrap" class="text-muted">-->
+  <!--              <small>24 hour change</small>-->
+  <!--              <span fxFlex></span>-->
+  <!--              <small class="text-green">530(+3.73%)</small>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--          <div class="border-bottom pb-1 mb-1">-->
+  <!--            <div fxLyout="row wrap" class="text-blue font-weight-bold">-->
+  <!--              <span>ETH vs EUR</span>-->
+  <!--              <span fxFlex></span>-->
+  <!--              <span>3829.23</span>-->
+  <!--            </div>-->
+  <!--            <div fxLyout="row wrap" class="text-muted">-->
+  <!--              <small>24 hour change</small>-->
+  <!--              <span fxFlex></span>-->
+  <!--              <small class="text-red">430(-1.43%)</small>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--          <div class="">-->
+  <!--            <div fxLyout="row wrap" class="text-blue font-weight-bold">-->
+  <!--              <span>ETH vs GBP</span>-->
+  <!--              <span fxFlex></span>-->
+  <!--              <span>5836.79</span>-->
+  <!--            </div>-->
+  <!--            <div fxLyout="row wrap" class="text-muted">-->
+  <!--              <small>24 hour change</small>-->
+  <!--              <span fxFlex></span>-->
+  <!--              <small class="text-green">210(+2.23%)</small>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--        </mat-expansion-panel>-->
+  <!--        <mat-expansion-panel>-->
+  <!--          <mat-expansion-panel-header>-->
+  <!--            <mat-panel-title>-->
+  <!--              LTC-->
+  <!--            </mat-panel-title>-->
+  <!--          </mat-expansion-panel-header>-->
+
+  <!--          <div class="border-bottom pb-1 mb-1">-->
+  <!--            <div fxLyout="row wrap" class="text-blue font-weight-bold">-->
+  <!--              <span>LTC vs USD</span>-->
+  <!--              <span fxFlex></span>-->
+  <!--              <span>8897.45</span>-->
+  <!--            </div>-->
+  <!--            <div fxLyout="row wrap" class="text-muted">-->
+  <!--              <small>24 hour change</small>-->
+  <!--              <span fxFlex></span>-->
+  <!--              <small class="text-green">530(+3.73%)</small>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--          <div class="border-bottom pb-1 mb-1">-->
+  <!--            <div fxLyout="row wrap" class="text-blue font-weight-bold">-->
+  <!--              <span>LTC vs EUR</span>-->
+  <!--              <span fxFlex></span>-->
+  <!--              <span>3829.23</span>-->
+  <!--            </div>-->
+  <!--            <div fxLyout="row wrap" class="text-muted">-->
+  <!--              <small>24 hour change</small>-->
+  <!--              <span fxFlex></span>-->
+  <!--              <small class="text-red">430(-1.43%)</small>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--          <div class="">-->
+  <!--            <div fxLyout="row wrap" class="text-blue font-weight-bold">-->
+  <!--              <span>LTC vs GBP</span>-->
+  <!--              <span fxFlex></span>-->
+  <!--              <span>5836.79</span>-->
+  <!--            </div>-->
+  <!--            <div fxLyout="row wrap" class="text-muted">-->
+  <!--              <small>24 hour change</small>-->
+  <!--              <span fxFlex></span>-->
+  <!--              <small class="text-green">210(+2.23%)</small>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--        </mat-expansion-panel>-->
+  <!--      </mat-accordion>-->
+  <!--    </div>-->
+
+  <!--    &lt;!&ndash; <mat-card>-->
+  <!--        <div fxLayout="row wrap" fxLayoutAlign="start center">-->
+  <!--            <h6 class="m-0">Balance </h6>-->
+  <!--          </div>-->
+  <!--        <div echarts [options]="cryptoDonutChart" [autoResize]="true" style="height: 318px;"></div>-->
+  <!--    </mat-card> &ndash;&gt;-->
+  <!--  </div>-->
+</div>
+
+<!-- COIN ROW -->
+
+<!--<div fxLayout="row wrap" [@animate]="{value:'*',params:{delay:'600ms',scale:'.9'}}">-->
+<!--  <div fxFlex="100" fxFlex.gt-sm="20" fxFlex.sm="50" >-->
+<!--    <mat-card class="rounded-circle" fxLayout="row wrap" fxLayoutAlign="start center">-->
+<!--      <img class="avatar-md rounded-circle" src="assets/images/cryptocurrencies/BTC.png" alt="">-->
+<!--      <span style="width: 20px"></span>-->
+<!--      <div>-->
+<!--        <p class="m-0 text-14 text-muted line-height-1">Bitcoin</p>-->
+<!--        <span class="text-18 font-weight-bold text-green">$254 <span class="material-icons mat-icon-18">arrow_drop_up</span></span>-->
+<!--      </div>-->
+<!--    </mat-card>-->
+<!--  </div>-->
+<!--  <div fxFlex="100" fxFlex.gt-sm="20" fxFlex.sm="50" >-->
+<!--    <mat-card class="rounded-circle" fxLayout="row wrap" fxLayoutAlign="start center">-->
+<!--      <img class="avatar-md rounded-circle" src="assets/images/cryptocurrencies/ETH.png" alt="">-->
+<!--      <span style="width: 20px"></span>-->
+<!--      <div>-->
+<!--        <p class="m-0 text-14 text-muted line-height-1">Ethereum</p>-->
+<!--        <span class="text-18 font-weight-bold text-red">$64 <span class="material-icons mat-icon-18">arrow_drop_down</span></span>-->
+<!--      </div>-->
+<!--    </mat-card>-->
+<!--  </div>-->
+<!--  <div fxFlex="100" fxFlex.gt-sm="20" fxFlex.sm="50" >-->
+<!--    <mat-card class="rounded-circle" fxLayout="row wrap" fxLayoutAlign="start center">-->
+<!--      <img class="avatar-md rounded-circle" src="assets/images/cryptocurrencies/LTC.png" alt="">-->
+<!--      <span style="width: 20px"></span>-->
+<!--      <div>-->
+<!--        <p class="m-0 text-14 text-muted line-height-1">Litecoin</p>-->
+<!--        <span class="text-18 font-weight-bold text-green">$45 <span class="material-icons mat-icon-18">arrow_drop_up</span></span>-->
+<!--      </div>-->
+<!--    </mat-card>-->
+<!--  </div>-->
+<!--  <div fxFlex="100" fxFlex.gt-sm="20" fxFlex.sm="50" >-->
+<!--    <mat-card class="rounded-circle" fxLayout="row wrap" fxLayoutAlign="start center">-->
+<!--      <img class="avatar-md rounded-circle" src="assets/images/cryptocurrencies/BTS.png" alt="">-->
+<!--      <span style="width: 20px"></span>-->
+<!--      <div>-->
+<!--        <p class="m-0 text-14 text-muted line-height-1">BTS</p>-->
+<!--        <span class="text-18 font-weight-bold text-red">$10 <span class="material-icons mat-icon-18">arrow_drop_down</span></span>-->
+<!--      </div>-->
+<!--    </mat-card>-->
+<!--  </div>-->
+<!--  <div fxFlex="100" fxFlex.gt-sm="20" fxFlex.sm="50" >-->
+<!--    <mat-card class="rounded-circle" fxLayout="row wrap" fxLayoutAlign="start center">-->
+<!--      <img class="avatar-md rounded-circle" src="assets/images/cryptocurrencies/CNX.png" alt="">-->
+<!--      <span style="width: 20px"></span>-->
+<!--      <div>-->
+<!--        <p class="m-0 text-14 text-muted line-height-1">CNX</p>-->
+<!--        <span class="text-18 font-weight-bold text-green">$80 <span class="material-icons mat-icon-18">arrow_drop_up</span></span>-->
+<!--      </div>-->
+<!--    </mat-card>-->
+<!--  </div>-->
+<!--</div>-->
+<!--/ COIN ROW -->
+
+<!-- Table row -->
+<!--<div fxLayout="row wrap" [@animate]="{value:'*',params:{delay:'800ms',scale:'.9'}}">-->
+<!--  <div fxFlex="100" fxFlex.gt-sm="66.67">-->
+<!--    <mat-card class="p-0 ">-->
+<!--      <h6 class="pl-1 pt-1 m-0 ">Active Trades</h6>-->
+<!--      <ngx-datatable-->
+<!--              class="material ml-0 mr-0"-->
+<!--              [rows]="activeTrades"-->
+<!--              [columnMode]="'flex'"-->
+<!--              [headerHeight]="50"-->
+<!--              [footerHeight]="0"-->
+<!--              [rowHeight]="'auto'">-->
+
+<!--        <ngx-datatable-column name="Currency" [flexGrow]="1">-->
+<!--          <ng-template let-row="row" ngx-datatable-cell-template>-->
+<!--            <div fxLayout="row wrap" fxLayoutAlign="start center">-->
+<!--              <img [src]="row.icon" alt="" class="avatar-xs mr-05">-->
+<!--              {{ row?.currency }}-->
+<!--            </div>-->
+<!--          </ng-template>-->
+<!--        </ngx-datatable-column>-->
+<!--        <ngx-datatable-column name="Balance" [flexGrow]="1">-->
+<!--          <ng-template let-row="row" ngx-datatable-cell-template>-->
+<!--            {{row?.balance}}-->
+<!--          </ng-template>-->
+<!--        </ngx-datatable-column>-->
+<!--        <ngx-datatable-column name="Buying Rate" [flexGrow]="1">-->
+<!--          <ng-template let-row="row" ngx-datatable-cell-template>-->
+<!--            {{row?.buyingRate}}-->
+<!--          </ng-template>-->
+<!--        </ngx-datatable-column>-->
+<!--        <ngx-datatable-column name="Current Rate" [flexGrow]="1">-->
+<!--          <ng-template let-row="row" ngx-datatable-cell-template>-->
+<!--            {{row?.currentRate}}-->
+<!--          </ng-template>-->
+<!--        </ngx-datatable-column>-->
+<!--        <ngx-datatable-column name="Action" [flexGrow]="1">-->
+<!--          <ng-template let-row="row" ngx-datatable-cell-template>-->
+<!--            <button mat-stroked-button color="primary">Close</button>-->
+<!--          </ng-template>-->
+<!--        </ngx-datatable-column>-->
+<!--      </ngx-datatable>-->
+<!--    </mat-card>-->
+<!--  </div>-->
+
+<!--  <div fxFlex="100" fxFlex.gt-sm="33.33">-->
+<!--    <mat-card class="p-0 ">-->
+<!--      <h6 class="ml-1 mt-1">Trending Currencies</h6>-->
+<!--      <ngx-datatable-->
+<!--              class="material ml-0 mr-0"-->
+<!--              [rows]="trendingCurrencies"-->
+<!--              [columnMode]="'flex'"-->
+<!--              [headerHeight]="50"-->
+<!--              [footerHeight]="0"-->
+<!--              [rowHeight]="'auto'">-->
+
+<!--        <ngx-datatable-column name="Currency" [flexGrow]="1">-->
+<!--          <ng-template let-row="row" ngx-datatable-cell-template>-->
+<!--            {{ row?.currency }}-->
+<!--          </ng-template>-->
+<!--        </ngx-datatable-column>-->
+<!--        <ngx-datatable-column name="Balance" [flexGrow]="1">-->
+<!--          <ng-template let-row="row" ngx-datatable-cell-template>-->
+<!--            {{row?.rate}}-->
+<!--          </ng-template>-->
+<!--        </ngx-datatable-column>-->
+
+<!--        <ngx-datatable-column name="Action" [flexGrow]="1">-->
+<!--          <ng-template let-row="row" ngx-datatable-cell-template>-->
+<!--            <button mat-stroked-button color="warn">Buy</button>-->
+<!--          </ng-template>-->
+<!--        </ngx-datatable-column>-->
+<!--      </ngx-datatable>-->
+<!--    </mat-card>-->
+<!--  </div>-->
+
+<!--</div>-->

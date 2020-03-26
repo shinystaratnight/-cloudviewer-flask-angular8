@@ -1,0 +1,27 @@
+<p>fleet works!</p>
+
+<mat-selection-list #allList>
+    <mat-list-option *ngFor="let district of allDistricts">
+      {{district.name}}
+    </mat-list-option>
+</mat-selection-list>
+
+<p>
+    <button mat-icon-button (click)="onAdd()">
+      <i class="material-icons">arrow_upward</i>
+    </button>
+    <br/>
+    <br/>
+    <button mat-icon-button>
+      <i class="material-icons">arrow_downward</i>
+    </button>
+    <br/>
+    <br/>
+    
+</p>
+
+<mat-selection-list #selectedList>
+    <mat-list-option *ngFor="let district of selectedDistricts">
+      {{district.name}}
+    </mat-list-option>
+</mat-selection-list>

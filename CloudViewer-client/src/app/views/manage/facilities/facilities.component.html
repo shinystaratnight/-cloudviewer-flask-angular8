@@ -1,0 +1,58 @@
+<div class="m-333">
+</div>
+
+<mat-card class="p-0">
+    <mat-card-content class="p-0">
+        <mat-progress-bar mode="indeterminate" class="session-progress"></mat-progress-bar>
+
+        <form [formGroup]="myForm">
+            <mat-form-field class="margin-333" style="width: 99%">
+                <input matInput placeholder="Type to filter" value="" (keyup)="updateFilter($event)" name="filterText"
+                    [formControl]="myForm.controls['filterText']">
+            </mat-form-field>
+        </form>
+
+        <ngx-datatable class="material ml-0 mr-0" [rows]="items_filtered" [columnMode]="'force'" [headerHeight]="50"
+            [columns]="columns" [footerHeight]="50" [scrollbarH]="true" [rowHeight]="50">
+
+            <ngx-datatable-column name="ID" [minWidth]="100">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    <a [routerLink]="[row.id]" routerLinkActive="router-link-active">{{ row.id }}</a>
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Name" [minWidth]="200">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    <a [routerLink]="[row.id]" routerLinkActive="router-link-active">{{ row.name }}</a>
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="lat" [minWidth]="50">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{ row.latitude | number:'.4' }}
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="lng" [minWidth]="50">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{ row.longitude | number:'.4' }}
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="LastUpdate" [minWidth]="125">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{ row.lastUpdate }}
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="term" [minWidth]="125">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{ row.termId }}
+                </ng-template>
+            </ngx-datatable-column>
+
+
+        </ngx-datatable>
+
+    </mat-card-content>
+</mat-card>

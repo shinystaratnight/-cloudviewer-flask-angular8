@@ -1,0 +1,31 @@
+pioneer_admin / pioneer123
+
+
+Send Grid API Key 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
+
+{
+   "from":{
+      "email":"orders@economypolymers.com",
+      "name": "ELIMS - Economy Polymers"
+   },
+   "personalizations":[
+      {
+         "to":[
+            {
+               "email": "kananhooper@gmail.com"
+            }
+         ],
+         "dynamic_template_data":
+         {
+		    "Subject": "Your account is approved",
+		    "PreHeader": "Your account is approved",
+		    "customerName": "Customer",
+		    "body": "Your account is approved."
+		 }
+      }
+   ],
+   "asm" : {
+   		"group_id": 10432
+   },
+   "template_id":"d-910b88c2557943c39f97a1f60c8fde2c"
+}

@@ -1,0 +1,27 @@
+<mat-card class="p-0">
+  <mat-progress-bar mode="determinate" class="session-progress"></mat-progress-bar>
+  <mat-card-title class="">
+    <div class="card-title-text">
+      <span>Change your phone number</span>
+    </div>
+    <mat-divider></mat-divider>
+  </mat-card-title>
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+
+    <div class="pb-1">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Phone Number" [formControl]="phone" (keyup)="FormatPhone_keyup($event)">
+      </mat-form-field>
+    </div>
+    <small *ngIf="phone.errors?.required && phone.touched" class="form-error-msg"> Phone is
+      required </small>
+
+    <small *ngIf="phone.errors?.minlength && phone.touched" class="form-error-msg"> Invaild
+      phone number </small>
+
+    <small *ngIf="phone.errors?.maxlength && phone.touched" class="form-error-msg"> Invaild
+      phone number </small>
+    
+    <button mat-raised-button color="primary" class="mb-1">Save</button>
+  </form>
+</mat-card>

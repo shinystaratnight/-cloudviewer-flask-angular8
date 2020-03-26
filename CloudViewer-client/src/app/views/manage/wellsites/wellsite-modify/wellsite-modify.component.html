@@ -1,0 +1,188 @@
+<mat-card>
+	<mat-card-content>
+		<mat-progress-bar mode="indeterminate" class="session-progress"></mat-progress-bar>
+	</mat-card-content>
+	<mat-card-content>
+		<h1 mat-card-title>{{WellSiteName}}</h1>
+
+		<form [formGroup]="myForm" (ngSubmit)="submit()" *ngIf="ShowForm">
+			<div fxLayout="row wrap" fxLayout.lt-sm="column">
+
+				<div fxFlex="25" class="pr-1">
+					<mat-form-field class="full-width">
+						<mat-select formControlName="districtID" placeholder="Select District">
+							<mat-option *ngFor="let obj of arr_Districts" [value]="obj.id">
+								{{ obj.name }}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+				</div>
+				<div fxFlex="25" class="pr-1">
+					<mat-form-field class="full-width">
+						<input matInput name="orderNumber" [formControl]="myForm.controls['orderNumber']"
+							placeholder="Order Number">
+					</mat-form-field>
+				</div>
+				<div fxFlex="25" class="pr-1">
+					<mat-form-field class="full-width">
+						<input matInput name="wellName" [formControl]="myForm.controls['wellName']"
+							placeholder="Well Name">
+					</mat-form-field>
+				</div>
+				<div fxFlex="25" class="pr-1">
+					<mat-form-field class="full-width">
+						<input matInput name="jobLocation" [formControl]="myForm.controls['jobLocation']"
+							placeholder="Job Location">
+					</mat-form-field>
+				</div>
+
+				<div fxFlex="25" class="pr-1">
+					<mat-form-field class="full-width">
+						<input matInput name="fracCrew" [formControl]="myForm.controls['fracCrew']"
+							placeholder="Frac Crew">
+					</mat-form-field>
+				</div>
+				<div fxFlex="25" class="pr-1">
+					<mat-form-field class="full-width">
+						<input matInput name="fieldTech" [formControl]="myForm.controls['fieldTech']"
+							placeholder="Field Tech">
+					</mat-form-field>
+				</div>
+				<div fxFlex="25" class="pr-1">
+					<mat-form-field class="full-width">
+						<input matInput name="tankCount" [formControl]="myForm.controls['tankCount']"
+							placeholder="Tank Count">
+					</mat-form-field>
+				</div>
+				<div fxFlex="25" class="pr-1">
+					<mat-form-field class="full-width">
+						<mat-select formControlName="jobStatus" placeholder="Wellsite Status">
+							<mat-option *ngFor="let obj of arr_States" [value]="obj.name">
+								{{ obj.name }}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+				</div>
+
+				<div fxFlex="100" class="pr-1">
+					<mat-form-field class="full-width">
+						<input matInput name="memo" [formControl]="myForm.controls['memo']" placeholder="Memo">
+					</mat-form-field>
+				</div>
+				<!-- <div fxFlex="50" class="pr-1">
+					<mat-form-field class="full-width">
+						<input matInput name="postedToJob" [formControl]="myForm.controls['postedToJob']"
+							placeholder="Posted To Job">
+					</mat-form-field>
+				</div> -->
+
+				<div fxFlex="25" class="pr-1">
+					<mat-form-field class="full-width">
+						<input matInput name="scheduledStartDate" [formControl]="myForm.controls['scheduledStartDate']"
+							placeholder="Scheduled Start Date" [matDatepicker]="myDatepicker_scheduledStartDate">
+						<mat-datepicker-toggle matSuffix [for]="myDatepicker_scheduledStartDate">
+							<mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+						</mat-datepicker-toggle>
+						<mat-datepicker #myDatepicker_scheduledStartDate></mat-datepicker>
+					</mat-form-field>
+				</div>
+				<div fxFlex="25" class="pr-1">
+					<mat-form-field class="full-width">
+						<input matInput name="scheduledEndDate" [formControl]="myForm.controls['scheduledEndDate']"
+							placeholder="Scheduled End Date" [matDatepicker]="myDatepicker_scheduledEndDate">
+						<mat-datepicker-toggle matSuffix [for]="myDatepicker_scheduledEndDate">
+							<mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+						</mat-datepicker-toggle>
+						<mat-datepicker #myDatepicker_scheduledEndDate></mat-datepicker>
+					</mat-form-field>
+				</div>
+				<div fxFlex="25" class="pr-1">
+					<mat-form-field class="full-width">
+						<input matInput name="tankDeliveryDate" [formControl]="myForm.controls['tankDeliveryDate']"
+							placeholder="Tank Delivery Date" [matDatepicker]="myDatepicker_tankDeliveryDate">
+						<mat-datepicker-toggle matSuffix [for]="myDatepicker_tankDeliveryDate">
+							<mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+						</mat-datepicker-toggle>
+						<mat-datepicker #myDatepicker_tankDeliveryDate></mat-datepicker>
+					</mat-form-field>
+				</div>
+				<div fxFlex="25" class="pr-1">
+					<mat-form-field class="full-width">
+						<input matInput name="dateCreated" [formControl]="myForm.controls['dateCreated']"
+							placeholder="Date Created" [matDatepicker]="myDatepicker_dateCreated">
+						<mat-datepicker-toggle matSuffix [for]="myDatepicker_dateCreated">
+							<mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+						</mat-datepicker-toggle>
+						<mat-datepicker #myDatepicker_dateCreated></mat-datepicker>
+					</mat-form-field>
+				</div>
+
+				<div fxFlex="50" class="pr-1">
+					<mat-form-field class="full-width">
+						<input matInput name="gpsLat" [formControl]="myForm.controls['gpsLat']" placeholder="GPS Lat">
+					</mat-form-field>
+				</div>
+				<div fxFlex="50" class="pr-1">
+					<mat-form-field class="full-width">
+						<input matInput name="gpsLong" [formControl]="myForm.controls['gpsLong']" placeholder="GPS Lng">
+					</mat-form-field>
+				</div>
+				<!-- <div fxFlex="25" class="pr-1">
+					<mat-form-field class="full-width">
+						<input matInput name="jobStart" [formControl]="myForm.controls['jobStart']"
+							placeholder="Job Start" [matDatepicker]="myDatepicker_jobStart">
+						<mat-datepicker-toggle matSuffix [for]="myDatepicker_jobStart">
+							<mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+						</mat-datepicker-toggle>
+						<mat-datepicker #myDatepicker_jobStart></mat-datepicker>
+					</mat-form-field>
+				</div>
+				<div fxFlex="25" class="pr-1">
+					<mat-form-field class="full-width">
+						<input matInput name="jobEnd" [formControl]="myForm.controls['jobEnd']" placeholder="Job End"
+							[matDatepicker]="myDatepicker_jobEnd">
+						<mat-datepicker-toggle matSuffix [for]="myDatepicker_jobEnd">
+							<mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+						</mat-datepicker-toggle>
+						<mat-datepicker #myDatepicker_jobEnd></mat-datepicker>
+					</mat-form-field>
+				</div> -->
+
+
+				<!-- <div fxFlex="50" class="pr-1">
+			<mat-form-field class="full-width">
+				<mat-select placeholder="Wellsite Status" [formControl]="State">
+					<mat-option [value]="item" *ngFor="let item of StateDataList">
+						{{ item }}
+					</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</div>
+
+		<div fxFlex="50" class="pr-1">
+			<mat-form-field class="full-width">
+				<mat-select placeholder="Select Status" [formControl]="Status">
+					<mat-option [value]="Status" *ngFor="let Status of StatusDataList">
+						{{ Status }}
+					</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</div>
+
+		<div fxFlex="50" class="pr-1">
+			<mat-form-field class="full-width">
+				<mat-select placeholder="Select Well Site" [formControl]="WellSites">
+					<mat-option [value]="Wellsite.id" *ngFor="let Wellsite of WellSiteDataList">
+						{{ Wellsite.name }}
+					</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</div> -->
+
+				<div fxFlex="100" class="mt-1">
+					<button mat-raised-button color="primary" [disabled]="!myForm.valid">Save</button>
+				</div>
+			</div>
+		</form>
+	</mat-card-content>
+</mat-card>

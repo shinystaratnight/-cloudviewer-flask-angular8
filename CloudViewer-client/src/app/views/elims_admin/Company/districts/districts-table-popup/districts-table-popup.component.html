@@ -1,0 +1,33 @@
+<h1 matDialogTitle>{{data.Title}}</h1>
+<form [formGroup]="myForm" (ngSubmit)="submit()">
+  <div fxLayout="row wrap" fxLayout.lt-sm="column">
+
+    <div fxFlex="50" class="pr-1">
+      <mat-form-field class="full-width">
+        <mat-select placeholder="Select Company" formControlName="Company">
+          <mat-option [value]="item.id" *ngFor="let item of CompanyList">
+            {{ item.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50" class="pr-1">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="District Name" formControlName="DistrictName" />
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="100" class="pr-1">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Comment" formControlName="Comment" />
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="100" class="mt-1">
+      <button mat-raised-button color="primary" [disabled]="!myForm.valid">{{"SAVE" | translate }}</button>
+      <span fxFlex></span>
+      <button mat-button color="warn" type="button" (click)="dialogRef.close(false)">Cancel</button>
+    </div>
+  </div>
+</form>

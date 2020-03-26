@@ -1,0 +1,54 @@
+<h1 matDialogTitle>{{data.title}}</h1>
+<!--{{"ADD" | translate }} {{"Asset" | translate }}-->
+<form [formGroup]="itemForm" (ngSubmit)="submit()">
+  <div fxLayout="row wrap" fxLayout.lt-sm="column">
+
+    <div fxFlex="50" class="pr-1">
+      <mat-form-field class="full-width">
+        <input matInput name="AssetName" [formControl]="AssetName" placeholder="Asset Name">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50" class="pr-1">
+      <mat-form-field class="full-width">
+        <mat-select placeholder="Select State" [formControl]="State">
+          <mat-option [value]="item" *ngFor="let item of StateDataList">
+            {{ item }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50" class="pr-1">
+      <mat-form-field class="full-width">
+        <mat-select placeholder="Select Status" [formControl]="Status">
+          <mat-option [value]="Status" *ngFor="let Status of StatusDataList">
+            {{ Status }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50" class="pr-1">
+      <mat-form-field class="full-width">
+        <mat-select placeholder="Select Well Site" [formControl]="WellSites">
+          <mat-option [value]="Wellsite.id" *ngFor="let Wellsite of WellSiteDataList">
+            {{ Wellsite.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50" class="pr-1">
+      <mat-form-field class="full-width">
+        <input matInput name="Chemical" [formControl]="Chemical" placeholder="Chemical Name">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="100" class="mt-1">
+      <button mat-raised-button color="primary" [disabled]="!itemForm.valid">{{"SAVE" | translate }}</button>
+      <span fxFlex></span>
+      <button mat-button color="warn" type="button" (click)="dialogRef.close(false)">Cancel</button>
+    </div>
+  </div>
+</form>

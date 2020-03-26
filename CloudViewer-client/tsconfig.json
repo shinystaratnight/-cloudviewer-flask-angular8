@@ -1,0 +1,32 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "module": "esnext",
+    "outDir": "./dist/out-tsc",
+    "baseUrl": "src",
+    "paths": {
+      "@services/*": ["app/shared/services/*"],
+      "@validators/*": ["app/shared/validators/*"],
+      "@views/*": ["app/views/*"],
+      "@auth/*": ["app/shared/services/auth/*"],
+      "@shared/*": ["app/shared/*"],
+    },
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es2015",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "types": [
+      "googlemaps",
+      "node"
+    ], 
+    "lib": [
+      "es2016",
+      "dom"
+    ]
+  }
+}

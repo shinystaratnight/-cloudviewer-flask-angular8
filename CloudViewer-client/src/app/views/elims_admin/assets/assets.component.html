@@ -1,0 +1,109 @@
+<div class="m-333">
+    <!-- <span fxFlex></span> -->
+    <!--  <button mat-raised-button class="mb-05" color="primary" (click)="openPopUp({}, true)">{{"ADD" | translate }} {{"MEMBER" | translate }}</button>-->
+</div>
+
+
+
+<mat-card class="p-0" [@animate]="{value:'*',params:{y:'50px',delay:'300ms'}}">
+    <mat-card-content class="p-0">
+        <mat-progress-bar mode="indeterminate" class="session-progress"></mat-progress-bar>
+
+        <button mat-raised-button color="primary" (click)="openPopUp([], true)">
+            New Asset <mat-icon>assignment</mat-icon>
+        </button>
+
+        <form [formGroup]="myForm">
+            <mat-form-field class="margin-333" style="width: 99%">
+                <input matInput placeholder="Type to filter" value="" (keyup)='updateFilter($event)' name="filterText"
+                    [formControl]="myForm.controls['filterText']">
+            </mat-form-field>
+        </form>
+
+        <ngx-datatable class="material ml-0 mr-0" [rows]="items_filtered" [columnMode]="'force'" [headerHeight]="50"
+            [footerHeight]="50" [scrollbarH]="true" [rowHeight]="50">
+
+            <ngx-datatable-column name="ID" [flexGrow]="1">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{ row?.id }}
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Asset Type" [flexGrow]="1">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{ row?.assetType }}
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Sat Terminal" [flexGrow]="1">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{ row?.terminalSN }}
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Sat Serial" [flexGrow]="1">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{ row?.satSN }}
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="IP Address" [flexGrow]="1">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{ row?.ip }}
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Name" [flexGrow]="1">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{ row?.name }}
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Customer" [flexGrow]="1">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{ row?.Customer }}
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Latitude" [flexGrow]="1">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{ row?.latitude | number:'.4' }}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Longitude" [flexGrow]="1">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{ row?.longitude | number:'.4' }}
+                </ng-template>
+            </ngx-datatable-column>
+
+            <!-- <ngx-datatable-column name="Last Update" [flexGrow]="2">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{ row?.lastUpdate | date:'M/dd/yy H:mm Z' }}
+                </ng-template>
+            </ngx-datatable-column> -->
+
+            <ngx-datatable-column name="State" [flexGrow]="1">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{ row?.stateText }}
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Status" [flexGrow]="1">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{ row?.status }}
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Edit" [flexGrow]="1">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    <button mat-icon-button mat-sm-button color="primary" class="mr-1" (click)="openPopUp(row, false)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <!-- <button mat-icon-button mat-sm-button color="primary" (click)="viewDetails(row)">
+                        <mat-icon>assignment</mat-icon>
+                    </button> -->
+                </ng-template>
+            </ngx-datatable-column>
+        </ngx-datatable>
+    </mat-card-content>
+</mat-card>

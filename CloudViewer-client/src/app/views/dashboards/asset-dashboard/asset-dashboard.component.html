@@ -1,0 +1,97 @@
+<div class="m-333">
+</div>
+
+<mat-card class="p-0">
+    <mat-card-content class="p-0">
+        <mat-progress-bar mode="indeterminate" class="session-progress"></mat-progress-bar>
+
+        <form [formGroup]="myForm">
+            <mat-form-field class="margin-333" style="width: 99%">
+                <input matInput placeholder="Type to filter" value="" (keyup)="updateFilter($event)" name="filterText"
+                    [formControl]="myForm.controls['filterText']">
+            </mat-form-field>
+        </form>
+
+        <ngx-datatable class="material ml-0 mr-0" [rows]="items_filtered" [columnMode]="'force'" [headerHeight]="50"
+            [columns]="columns" [footerHeight]="50" [rowClass]="isAlarming" [scrollbarH]="true" [rowHeight]="50">
+
+            <ngx-datatable-column name="Name" [minWidth]="200">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{ row.name }}
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Level" [minWidth]="100">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{ row.Level }}
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Active Wellsite" [minWidth]="450">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{ row.activeWellsiteName }}
+                </ng-template>
+            </ngx-datatable-column>
+        </ngx-datatable>
+
+    </mat-card-content>
+</mat-card>
+
+<!-- <div class="out">
+    <ngx-datatable class="material ml-0 mr-0" [rows]="items_filtered" [columnMode]="'force'"
+        [headerHeight]="50" [columns]="columns" [footerHeight]="50" [rowClass]="isAlarming" [scrollbarH]="true"
+        [rowHeight]="50">
+
+        <ngx-datatable-column name="Name" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{ row.name }}
+            </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Level" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{ row.Level }}
+            </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Active Wellsite" [flexGrow]="4">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{ row.activeWellsiteName }}
+            </ng-template>
+        </ngx-datatable-column>
+    </ngx-datatable>
+</div> -->
+
+<!--
+    <div class="outerBox">
+        <div class="innerBox">
+            Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text
+            -
+            Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text
+            -
+            Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text
+            -
+            Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text
+            -
+            Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text
+            -
+            Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text
+            -
+            Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text
+            -
+            Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text
+            -
+            Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text
+            -
+            Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text
+            -
+            Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text - Box Text
+            -
+            Box Text - Box Text - Box Text - Box Text - Box Text
+        </div>
+    </div>
+
+
+    <ag-grid-angular class="mobileScroll ag-theme-balham" *ngIf="ifFilteredHasWellSite()" [rowData]="items_filtered"
+        [columnDefs]="columns" [modules]="modules" (gridReady)="onGridReady($event)" [rowClassRules]="rowClassRules">
+    </ag-grid-angular> -->

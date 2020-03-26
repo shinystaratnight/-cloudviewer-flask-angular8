@@ -1,0 +1,2 @@
+def UserAccountReset():
+    return None

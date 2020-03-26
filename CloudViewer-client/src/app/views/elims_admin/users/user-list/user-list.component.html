@@ -1,0 +1,26 @@
+<div fxLayout="row wrap">
+	<div fxFlex="100" fxFlex.gt-sm="100" fxFlex.sm="50">
+		<mat-card class="" [@animate]="{ value: '*', params: { y: '50px', delay: '300ms' } }">
+			<h3>Current Users</h3>
+			<ngx-datatable class="material ml-0 mr-0 striped" [rows]="Users_Current" [columnMode]="'flex'"
+				[headerHeight]="50" [footerHeight]="0" [rowHeight]="'auto'">
+				<ngx-datatable-column name="User" [flexGrow]="1">
+					<ng-template let-row="row" ngx-datatable-cell-template>
+						{{ row?.username }} <br /> {{ row?.email }} <br /> ID# {{ row?.userID }}
+					</ng-template>
+				</ngx-datatable-column>
+				<ngx-datatable-column name="Company" [flexGrow]="1">
+					<ng-template let-row="row" ngx-datatable-cell-template>
+						{{row?.companyName}} <br /> ID# {{row?.companyID}}
+					</ng-template>
+				</ngx-datatable-column>
+				<ngx-datatable-column name="Access" [flexGrow]="1">
+					<ng-template let-row="row" ngx-datatable-cell-template>
+						{{row?.strAccessLevel}} 
+					</ng-template>
+				</ngx-datatable-column>
+			</ngx-datatable>
+		</mat-card>
+	</div>
+
+</div>

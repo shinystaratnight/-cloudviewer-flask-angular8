@@ -1,0 +1,58 @@
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatProgressBar, MatButton } from '@angular/material';
+import { Validators, FormGroup, FormControl } from '@angular/forms';
+import { AuthServiceService } from '../../../shared/services/auth-service.service';
+
+@Component({
+  selector: 'app-signin',
+  templateUrl: './signin.component.html',
+  styleUrls: ['./signin.component.css']
+})
+export class SigninComponent implements OnInit {
+  @ViewChild(MatProgressBar, {static: false}) progressBar: MatProgressBar;
+  @ViewChild(MatButton, {static: false}) submitButton: MatButton;
+
+  signinForm: FormGroup;
+
+  constructor(private Auth: AuthServiceService) { }
+
+  ngOnInit() {
+    this.signinForm = new FormGroup({
+      username: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required),
+      rememberMe: new FormControl(false)
+    })
+  }
+
+  signin(event) {
+
+    event.preventDefault();
+    
+    const signinData = this.signinForm.value
+    console.log(signinData);
+
+    this.submitButton.disabled = true;
+    this.progressBar.mode = 'indeterminate';
+
+    this.router.navigateByUrl('/dashboards/mainDashboard');
+
+    this.authService.login(this.model).subscribe(
+        () => {
+
+        },
+        error => {
+          console.log("Could not login");
+        },
+        () => {
+          this.router.navigateByUrl('/dashboards/mainDashboard');
+          // this.router.navigate('Dashboards/MainDashboard');
+        }
+    );
+
+  }
+
+
+
+
+
+}

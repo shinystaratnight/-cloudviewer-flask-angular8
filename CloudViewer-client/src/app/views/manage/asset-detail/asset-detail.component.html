@@ -1,0 +1,83 @@
+<div fxLayout="row wrap">
+	<div fxFlex="100" fxFlex.gt-sm="100" fxFlex.sm="50">
+		<h1>{{ AssetName }}</h1>
+		<mat-progress-bar mode="indeterminate" class="session-progress"></mat-progress-bar>
+	</div>
+</div>
+<div fxLayout="row wrap">
+	<div fxFlex="100" fxFlex.gt-sm="25" fxFlex.sm="50">
+		<mat-card class="p-0" [@animate]="{ value: '*', params: { y: '50px', delay: '300ms' } }">
+			<h3>Asset Information</h3>
+			<ngx-datatable class="material ml-0 mr-0" [rows]="TableData" [columnMode]="'flex'" [headerHeight]="50"
+				[footerHeight]="0" [rowHeight]="'auto'">
+				<ngx-datatable-column name="Property Name" [flexGrow]="1">
+					<ng-template let-row="row" ngx-datatable-cell-template>
+						{{ row?.Name }}
+					</ng-template>
+				</ngx-datatable-column>
+				<ngx-datatable-column name="Property Value" [flexGrow]="1">
+					<ng-template let-row="row" ngx-datatable-cell-template>
+						{{row?.Value}}
+					</ng-template>
+				</ngx-datatable-column>
+			</ngx-datatable>
+		</mat-card>
+	</div>
+	<!-- <div fxFlex="100" fxFlex.gt-sm="25" fxFlex.sm="50">
+		<mat-card class="p-0" [@animate]="{ value: '*', params: { y: '50px', delay: '300ms' } }">
+			<h3>Asset Information</h3>
+			<table mat-table [dataSource]="TableData">
+				<tr mat-header-row *matHeaderRowDef="displayedColumns_TableData"></tr>
+				<tr mat-row *matRowDef="let row; columns: displayedColumns_TableData;"></tr>
+				<ng-container matColumnDef="Property Name">
+					<th mat-header-cell *matHeaderCellDef>Property Name</th>
+					<td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+				</ng-container>
+				<ng-container matColumnDef="Property Value">
+					<th mat-header-cell *matHeaderCellDef>Property Value</th>
+					<td mat-cell *matCellDef="let element"> {{element.Value}} </td>
+				</ng-container>
+			</table>
+		</mat-card>
+	</div> -->
+
+	<div fxFlex="100" fxFlex.gt-sm="25" fxFlex.sm="50">
+		<mat-card class="p-0" [@animate]="{ value: '*', params: { y: '50px', delay: '300ms' } }">
+			<h3>Current Data Values</h3>
+			<ngx-datatable class="material ml-0 mr-0" [rows]="TablePoints" [columnMode]="'flex'" [headerHeight]="50"
+				[footerHeight]="0" [rowHeight]="'auto'" [rowClass]="isAlarming">
+				<ngx-datatable-column name="Point Name" [flexGrow]="1">
+					<ng-template let-row="row" ngx-datatable-cell-template>
+						<div class="hoverDiv" tooltip="{{getToolTip(row)}}" content-type="html" placement="right">
+							{{row?.Name}}</div>
+					</ng-template>
+				</ngx-datatable-column>
+				<ngx-datatable-column name="Point Value" [flexGrow]=".5">
+					<ng-template let-row="row" ngx-datatable-cell-template>
+						<div class="hoverDiv" tooltip="{{getToolTip(row)}}" content-type="html" placement="right">
+							{{row?.Value}}</div>
+					</ng-template>
+				</ngx-datatable-column>
+			</ngx-datatable>
+		</mat-card>
+	</div>
+	<div fxFlex="100" fxFlex.gt-sm="50" fxFlex.sm="50">
+		<div id='Chart' class="pb-1 border-right-light">
+			<mat-card class="p-0" [@animate]="{ value: '*', params: { y: '50px', delay: '300ms' } }">
+				<highcharts-chart [Highcharts]="Highcharts" [options]="optFromInput" [(update)]="updateFromInput"
+					(chartInstance)="logChartInstance($event)" style="width: 100%; height: 100%; display: block;">
+				</highcharts-chart>
+				<!-- <div class='chart' [chart]="chart"></div> -->
+				<!-- <div #gmap style="width:100%;height:400px"></div> -->
+			</mat-card>
+		</div>
+		<br />
+		<div id='googleMap' class="pb-1 border-right-light">
+			<mat-card class="p-0" [@animate]="{ value: '*', params: { y: '50px', delay: '300ms' } }">
+				<agm-map [zoom]="zoom" [latitude]="mapCenter.lat" [longitude]="mapCenter.lng"
+					(mapReady)="onMapReady($event)">
+				</agm-map>
+			</mat-card>
+		</div>
+	</div>
+</div>

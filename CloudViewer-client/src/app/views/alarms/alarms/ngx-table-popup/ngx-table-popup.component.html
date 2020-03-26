@@ -1,0 +1,59 @@
+<h1 matDialogTitle>{{data.title}} for {{data.payload.name}}</h1>
+<form [formGroup]="itemForm" (ngSubmit)="submit()">
+  <div fxLayout="row wrap" fxLayout.lt-sm="column">
+    <div fxFlex="50" class="pr-1">
+      <mat-form-field class="full-width">
+        <input matInput name="alarmName" [formControl]="itemForm.controls['alarmName']" placeholder="Alarm Name">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50" class="pr-1">
+      <mat-form-field class="full-width">
+        <mat-select placeholder="Device and Sensor" [formControl]="itemForm.controls['alarmDeviceAndSensor']">
+          <mat-option [value]="Point.Value" *ngFor="let Point of data.arrPoints">
+            {{Point.Name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="100" class="pr-1">
+      <mat-form-field class="full-width">
+        <input matInput name="alarmText" [formControl]="itemForm.controls['alarmText']" placeholder="Alarm Text">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50" class="pr-1">
+      <mat-form-field class="full-width">
+        <mat-select placeholder="Select Alarm Type" [formControl]="itemForm.controls['alarmType']">
+          <mat-option [value]="AlarmType" *ngFor="let AlarmType of data.arrAlarmTypes">
+            {{ AlarmType }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50" class="pr-1">
+      <mat-form-field class="full-width">
+        <input matInput type="number" name="alarmSetpoint" [formControl]="itemForm.controls['alarmSetpoint']"
+          placeholder="Set Point">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50" class="pr-1">
+      <mat-form-field class="full-width">
+        <mat-select placeholder="Select Alarm Priority" [formControl]="itemForm.controls['alarmLevel']">
+          <mat-option [value]="AlarmPriority.Priority" *ngFor="let AlarmPriority of data.arrAlarmPriorities">
+            {{ AlarmPriority.Name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="100" class="mt-1">
+      <button mat-raised-button color="primary" [disabled]="itemForm.invalid">SAVE</button>
+      <span fxFlex></span>
+      <button mat-button color="warn" type="button" (click)="dialogRef.close(false)">Cancel</button>
+    </div>
+  </div>
+</form>

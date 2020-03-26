@@ -1,0 +1,16 @@
+
+*_pycache_*
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+
+*.xml
+
+*.log
+
+*.meta
+
+.idea
+
+.idea/dataSources/91b55172-b901-4a4a-a07a-1ccf8778772e/storage_v2/_src_/database/elims2.asN8sg/schema/

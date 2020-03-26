@@ -1,0 +1,30 @@
+<h1 matDialogTitle>{{data.Title}}</h1>
+<form [formGroup]="myForm" (ngSubmit)="submit()">
+  <div fxLayout="row wrap" fxLayout.lt-sm="column">
+
+    <div fxFlex="50" class="pr-1">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Company Name" formControlName="CompanyName" />
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50" class="pr-1">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="EP Customer ID" formControlName="epCustomerID" />
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="100" class="pr-1">
+      <div class="full-width">
+        Cust Rec Delivery: <input type="checkbox" formControlName="custRecDelivery">
+        <!-- id="{{row.ids}}" (change)="onFilterChange($event)" [checked]="row.Checked" -->
+      </div>
+    </div>
+
+    <div fxFlex="100" class="mt-1">
+      <button mat-raised-button color="primary" [disabled]="!myForm.valid">{{"SAVE" | translate }}</button>
+      <span fxFlex></span>
+      <button mat-button color="warn" type="button" (click)="dialogRef.close(false)">Cancel</button>
+    </div>
+  </div>
+</form>
